@@ -16,7 +16,6 @@ block AirportsTableInterpreter oftype TableInterpreter {
       "Longitude" oftype decimal,
       "Altitude" oftype integer,
     ];}
-
 block AirportsSQLDBWriter oftype SQLiteLoader {table: "airports";file: "./airports.sqlite";}
 AirportsHttpExtractor 
 -> AirportsTextFileInterpreter 
