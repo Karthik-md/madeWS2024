@@ -1,0 +1,74 @@
+pipeline figure
+{block figureHttpExtractor1 oftype HttpExtractor{url:"https://thedocs.worldbank.org/en/doc/7d852628d96b9411d43e5d36d5dff941-0050062022/original/Graphs-Chapter-5-02082022.xlsx";}
+ block figureCSVInterpreter1 oftype XLSXInterpreter { }
+ block figureSheetPicker1 oftype SheetPicker {sheetName: "Figure S5.1.2";}
+
+ block rowpicker1 oftype CellRangeSelector {
+   select : range P3:S45; }
+
+  block MpgColumnDeleter1 oftype ColumnDeleter {
+   delete: [column B];
+ }
+  block MpgColumnDeleter2 oftype ColumnDeleter {
+   delete: [column B];
+  }
+  
+  
+ block TableInterpreter1 oftype TableInterpreter {
+   header: false;
+   columns: [
+     "Country Code" oftype CountryCodeAlpha3 ,
+     "Bond Issuance Share" oftype text,
+     
+   ];
+ }
+
+
+ block bondIssuance1 oftype SQLiteLoader {
+   table: "bondIssuance";
+   file: "./country-stats.sqlite.db";
+ }
+
+ 
+figureHttpExtractor1 -> figureCSVInterpreter1->figureSheetPicker1->rowpicker1->MpgColumnDeleter1->MpgColumnDeleter2->TableInterpreter1->bondIssuance1;
+
+
+
+}
+
+
+pipeline figure2
+{block figureHttpExtractor2 oftype HttpExtractor{url:"https://thedocs.worldbank.org/en/doc/7d852628d96b9411d43e5d36d5dff941-0050062022/original/Graphs-Chapter-5-02082022.xlsx";}
+ block figureCSVInterpreter2 oftype XLSXInterpreter { }
+ block figureSheetPicker2 oftype SheetPicker {sheetName: "Figure S5.1.2";}
+
+ block rowpicker2 oftype CellRangeSelector {
+   select : range P3:R45; }
+ 
+ block MpgColumnDeleter3 oftype ColumnDeleter {
+   delete: [column B];
+ }
+
+
+
+
+
+block TableInterpreter2 oftype TableInterpreter {
+   header: false;
+   columns: [
+     "Country Code" oftype CountryCodeAlpha3 ,
+     
+     "GDP per capita" oftype text,
+   ];
+ }
+
+
+ block bondIssuance2 oftype SQLiteLoader {
+   table: "gdpPerCapita";
+   file: "./country-stats.sqlite.db";
+ }
+
+figureHttpExtractor2 -> figureCSVInterpreter2->figureSheetPicker2->rowpicker2->MpgColumnDeleter3->TableInterpreter2->bondIssuance2;
+
+
+}
