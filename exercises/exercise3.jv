@@ -18,7 +18,7 @@ pipeline figure
    header: false;
    columns: [
      "Country Code" oftype CountryCodeAlpha3 ,
-     "Bond Issuance Share" oftype text,
+     "Bond Issuance Share" oftype constrain,
      
    ];
  }
@@ -26,7 +26,7 @@ pipeline figure
 
  block bondIssuance1 oftype SQLiteLoader {
    table: "bondIssuance";
-   file: "./country-stats.sqlite.db";
+   file: "./country-stats.sqlite";
  }
 
  
@@ -52,15 +52,22 @@ block TableInterpreter2 oftype TableInterpreter {
    columns: [
      "Country Code" oftype CountryCodeAlpha3 ,
      
-     "GDP per capita" oftype text,
+     "GDP per capita" oftype constrain,
    ];
  }
 
 
  block bondIssuance2 oftype SQLiteLoader {
    table: "gdpPerCapita";
-   file: "./country-stats.sqlite.db";
+   file: "./country-stats.sqlite";
  }
+
+
+ valuetype constrain oftype text {
+    constraints: [ columnValue ];
+}
+
+constraint columnValue on text: value matches /^\d+(\.\d{1,3})?$/;
 
 figureHttpExtractor2 -> figureCSVInterpreter2->figureSheetPicker2->rowpicker2->MpgColumnDeleter3->TableInterpreter2->bondIssuance2;
 
