@@ -26,7 +26,7 @@ pipeline figure
 
  block bondIssuance1 oftype SQLiteLoader {
    table: "bondIssuance";
-   file: "./country-stats.sqlite.db";
+   file: "./country-stats.sqlite";
  }
 
  
@@ -59,7 +59,7 @@ block TableInterpreter2 oftype TableInterpreter {
 
  block bondIssuance2 oftype SQLiteLoader {
    table: "gdpPerCapita";
-   file: "./country-stats.sqlite.db";
+   file: "./country-stats.sqlite";
  }
 
 figureHttpExtractor2 -> figureCSVInterpreter2->figureSheetPicker2->rowpicker2->MpgColumnDeleter3->TableInterpreter2->bondIssuance2;
