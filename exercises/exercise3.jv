@@ -18,7 +18,7 @@ pipeline figure
    header: false;
    columns: [
      "Country Code" oftype CountryCodeAlpha3 ,
-     "Bond Issuance Share" oftype text,
+     "Bond Issuance Share" oftype decimal,
      
    ];
  }
@@ -52,7 +52,7 @@ block TableInterpreter2 oftype TableInterpreter {
    columns: [
      "Country Code" oftype CountryCodeAlpha3 ,
      
-     "GDP per capita" oftype text,
+     "GDP per capita" oftype decimal,
    ];
  }
 
