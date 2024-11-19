@@ -79,7 +79,7 @@ valuetype constrain2 oftype decimal {
  
  //"GDP per Capita" must be a positive decimal (must not be empty)
  constraint Bond_Issuance_Share oftype RangeConstraint {
-   lowerBound: 0;
+   lowerBound: 0.01;
    upperBound: 1;
  }
 
