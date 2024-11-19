@@ -18,7 +18,7 @@ pipeline figure
    header: false;
    columns: [
      "Country Code" oftype CountryCodeAlpha3 ,
-     "Bond Issuance Share" oftype constrain,
+     "Bond Issuance Share" oftype constrain2,
      
    ];
  }
@@ -63,11 +63,31 @@ block TableInterpreter2 oftype TableInterpreter {
  }
 
 
- valuetype constrain oftype text {
-    constraints: [ columnValue ];
+ valuetype constrain oftype decimal {
+    constraints: [ GDP_per_Capita ];
 }
+ 
+ //"GDP per Capita" must be a positive decimal (must not be empty)
+ constraint GDP_per_Capita oftype RangeConstraint {
+   lowerBound: 0;
+ }
 
-constraint columnValue on text: value matches /^\d+(\.\d{1,3})?$/;
+
+valuetype constrain2 oftype decimal {
+    constraints: [ Bond_Issuance_Share];
+}
+ 
+ //"GDP per Capita" must be a positive decimal (must not be empty)
+ constraint Bond_Issuance_Share oftype RangeConstraint {
+   lowerBound: 0;
+   upperBound: 1;
+ }
+
+
+
+
+
+
 figureHttpExtractor2 -> figureCSVInterpreter2->figureSheetPicker2->rowpicker2->MpgColumnDeleter3->TableInterpreter2->bondIssuance2;
 
 }
