@@ -69,7 +69,7 @@ block TableInterpreter2 oftype TableInterpreter {
  
  //"GDP per Capita" must be a positive decimal (must not be empty)
  constraint GDP_per_Capita oftype RangeConstraint {
-   lowerBound : 0;
+   lowerBound : 1;
    lowerBoundInclusive: false;
  }
 
