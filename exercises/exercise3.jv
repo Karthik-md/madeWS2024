@@ -69,7 +69,8 @@ block TableInterpreter2 oftype TableInterpreter {
  
  //"GDP per Capita" must be a positive decimal (must not be empty)
  constraint GDP_per_Capita oftype RangeConstraint {
-   lowerBound : 0.01;
+   lowerBound : 0;
+   lowerBoundInclusive: false;
  }
 
 
@@ -79,8 +80,10 @@ valuetype constrain2 oftype decimal {
  
  //"GDP per Capita" must be a positive decimal (must not be empty)
  constraint Bond_Issuance_Share oftype RangeConstraint {
-   lowerBound: 0.01;
-   upperBound: 1;
+   lowerBound: 0;
+   lowerBoundInclusive: true;
+  upperBound: 1;
+  upperBoundInclusive: true;
  }
 
 
