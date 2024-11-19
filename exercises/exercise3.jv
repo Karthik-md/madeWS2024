@@ -68,7 +68,6 @@ block TableInterpreter2 oftype TableInterpreter {
 }
 
 constraint columnValue on text: value matches /^\d+(\.\d{1,3})?$/;
-
 figureHttpExtractor2 -> figureCSVInterpreter2->figureSheetPicker2->rowpicker2->MpgColumnDeleter3->TableInterpreter2->bondIssuance2;
 
 }
