@@ -70,7 +70,8 @@ block TableInterpreter2 oftype TableInterpreter {
  
  //"GDP per Capita" must be a positive decimal (must not be empty)
  constraint GDP_per_Capita on decimal :
-    value > 0 ;
+    value > 0 and value != 0;
+    
  
 
 
@@ -105,7 +106,7 @@ block transformBlock oftype TableTransformer {
 
     // 7. In order to express what the transform function does, 
     // we assign an expression to the output. Values from the input and output of the transform can be referred to by name.
-    GDP_per_Capita: round (GDP_per_Capitas);
+    GDP_per_Capita: (round(GDP_per_Capitas));
   }
 
 
