@@ -7,7 +7,7 @@ pipeline figure
    select : range P3:S45; }
 
   block MpgColumnDeleter1 oftype ColumnDeleter {
-   delete: [column B];
+   delete: [column A];
  }
   block MpgColumnDeleter2 oftype ColumnDeleter {
    delete: [column B];
@@ -40,7 +40,7 @@ block figureHttpExtractor2 oftype HttpExtractor{url:"https://thedocs.worldbank.o
    select : range P3:R45; }
  
  block MpgColumnDeleter3 oftype ColumnDeleter {
-   delete: [column B];
+   delete: [column A];
  }
 
 
