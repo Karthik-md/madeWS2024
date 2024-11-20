@@ -52,7 +52,8 @@ block TableInterpreter2 oftype TableInterpreter {
    columns: [
      "Country Code" oftype CountryCodeAlpha3 ,
      
-     "GDP per capita" oftype constrain,
+     "GDP per capitas" oftype constrain,
+    
    ];
  }
 
@@ -86,11 +87,30 @@ valuetype constrain2 oftype decimal {
  }
 
 
+  
+block transformBlock oftype TableTransformer {
+    inputColumns: [
+      "GDP_per_Capitas"
+    ];
+    outputColumn: "GDP_per_Capita";
+    uses: GDP_per_Capita_Int;
+  }
 
 
 
 
-figureHttpExtractor2 -> figureCSVInterpreter2->figureSheetPicker2->rowpicker2->MpgColumnDeleter3->TableInterpreter2->bondIssuance2;
+ transform GDP_per_Capita_Int {
+    from GDP_per_Capitas oftype decimal;
+    to GDP_per_Capita oftype integer;
+
+    // 7. In order to express what the transform function does, 
+    // we assign an expression to the output. Values from the input and output of the transform can be referred to by name.
+    GDP_per_Capita: round (GDP_per_Capitas);
+  }
+
+
+
+figureHttpExtractor2 -> figureCSVInterpreter2->figureSheetPicker2->rowpicker2->MpgColumnDeleter3->TableInterpreter2->transformBlock->bondIssuance2;
 
 }
 
