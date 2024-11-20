@@ -90,9 +90,9 @@ valuetype constrain2 oftype decimal {
   
 block transformBlock oftype TableTransformer {
     inputColumns: [
-      "GDP_per_Capitas"
+      "GDP per capitas"
     ];
-    outputColumn: "GDP_per_Capita";
+    outputColumn: "GDP per capita";
     uses: GDP_per_Capita_Int;
   }
 
