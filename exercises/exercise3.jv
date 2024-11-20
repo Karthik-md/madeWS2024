@@ -63,12 +63,12 @@ block TableInterpreter2 oftype TableInterpreter {
  }
 
 
- valuetype constrain oftype decimal {
+ valuetype constrain oftype integer {
     constraints: [ GDP_per_Capita ];
 }
  
  //"GDP per Capita" must be a positive decimal (must not be empty)
- constraint GDP_per_Capita on decimal :
+ constraint GDP_per_Capita on integer :
     value > 0 ;
  
 
