@@ -52,7 +52,7 @@ block TableInterpreter2 oftype TableInterpreter {
    columns: [
      "Country Code" oftype CountryCodeAlpha3 ,
      
-     "GDP per capitas" oftype constrain,
+     "GDP per capita" oftype constrain,
     
    ];
  }
@@ -90,7 +90,7 @@ valuetype constrain2 oftype decimal {
   
 block transformBlock oftype TableTransformer {
     inputColumns: [
-      "GDP per capitas"
+      "GDP per capita"
     ];
     outputColumn: "GDP per capita";
     uses: GDP_per_Capita_Int;
