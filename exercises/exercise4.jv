@@ -1,0 +1,63 @@
+pipeline temperature{
+    block TemperatureHTTPExtractor oftype HttpExtractor{url:"https://www.mowesta.com/data/measure/mowesta-dataset-20221107.zip";}
+    
+    block ZipTemperatureInterpreter oftype ArchiveInterpreter {archiveType: "zip";}
+    
+    block TempFilePicker oftype FilePicker {path: "./data.csv";}
+    //block TempFilePicker2 oftype FilePicker {path: "./data.csv";}
+    block textCSVInterpreter oftype TextFileInterpreter {}
+    block AgencyCSVInterpreter oftype CSVInterpreter { delimiter: ";"; }
+    
+     block MpgColumnDeleter oftype ColumnDeleter {delete: [column F];}
+     block MpgColumnDeleter1 oftype ColumnDeleter {delete: [column F];}
+     block MpgColumnDeleter2 oftype ColumnDeleter {delete: [column F];}
+     block MpgColumnDeleter3 oftype ColumnDeleter {delete: [column F];}
+
+
+
+block TreeTableInterpreter oftype TableInterpreter {
+    header: false;
+    columns: [
+      "id" oftype abovezero,
+      "producer" oftype text,
+      "model" oftype text,
+      "month" oftype integer,
+      "temperature" oftype integer,
+      "battery_temperature" oftype integer,
+      
+    ];}
+
+
+ transform CelsiusToFahrenheit {
+   from Celsius oftype decimal;
+   to Fahrenheit oftype decimal;
+
+   Fahrenheit: (Celsius * 9/5) + 32;
+ }
+
+ block CelsiusToFahrenheitTransformer oftype TableTransformer {
+   inputColumns: ['temperature'];
+   outputColumn: 'temperature';
+   uses: CelsiusToFahrenheit;
+ }
+
+block CelsiusToFahrenheitTransformer2 oftype TableTransformer {
+   inputColumns: ['battery_temperature'];
+   outputColumn: 'battery_temperature';
+   uses: CelsiusToFahrenheit;
+ }
+
+ valuetype abovezero oftype integer {
+    constraints: [ GasFillLevelRange ];
+}
+
+ constraint GasFillLevelRange on integer:
+    value > 0 ;
+
+
+ block temperaturesqlwriter oftype SQLiteLoader {table: "temperatures";file: "./temperatures.sqlite";}
+
+
+
+TemperatureHTTPExtractor -> ZipTemperatureInterpreter -> TempFilePicker ->textCSVInterpreter->AgencyCSVInterpreter ->MpgColumnDeleter->MpgColumnDeleter1->MpgColumnDeleter2->MpgColumnDeleter3->TreeTableInterpreter ->CelsiusToFahrenheitTransformer->CelsiusToFahrenheitTransformer2-> temperaturesqlwriter;
+}
