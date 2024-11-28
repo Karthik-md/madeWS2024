@@ -22,8 +22,8 @@ block TreeTableInterpreter oftype TableInterpreter {
       "producer" oftype text,
       "model" oftype text,
       "month" oftype integer,
-      "temperature" oftype integer,
-      "battery_temperature" oftype integer,
+      "temperature" oftype decimal,
+      "battery_temperature" oftype decimal,
       
     ];}
 
@@ -48,10 +48,10 @@ block CelsiusToFahrenheitTransformer2 oftype TableTransformer {
  }
 
  valuetype abovezero oftype integer {
-    constraints: [ GasFillLevelRange ];
+    constraints: [ abovezeroRange ];
 }
 
- constraint GasFillLevelRange on integer:
+ constraint abovezeroRange on integer:
     value > 0 ;
 
 
