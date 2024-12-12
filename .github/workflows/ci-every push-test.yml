@@ -36,7 +36,6 @@ jobs:
         run: |
           ls -la project
 
-      - name: Run Test Code
+      - name: Find and Run Test Scripts
         run: |
-          ./test.sh
-        working-directory: project
+          find . -name "test.sh" -execdir bash -c './test.sh' \;
