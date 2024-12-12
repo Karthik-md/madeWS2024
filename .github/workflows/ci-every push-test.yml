@@ -32,14 +32,9 @@ jobs:
           repository: Karthik-md/madeWS2024
           path: project
 
-      # - name: Set execute permission for project.py
-      #   run: |
-      #     chmod +x project/project.py
-
-      # - name: Run Project Code
-      #   run: |
-      #     cd project
-      #     ./project.py
+      - name: List files in project directory
+        run: |
+          ls -la project
 
       - name: Run Test Code
         run: |
