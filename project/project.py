@@ -9,9 +9,6 @@ def download_csv(url, folder_name, filename):
     
     # Create folder if it doesn't exist
     
-    
-    
-    
     if not os.path.exists(folder_name):
         os.makedirs(folder_name)
     
