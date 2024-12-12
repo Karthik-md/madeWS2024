@@ -1,0 +1,47 @@
+name: ci-every push-test
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - project/**
+
+jobs:
+  ci-every_push-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Main Repository
+        uses: actions/checkout@v3
+        with:
+          path: main
+
+      - name: Set up Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 'lts/*'
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.11'
+
+      - name: Go back to Project Repository
+        uses: actions/checkout@v3
+        with:
+          repository: Karthik-md/madeWS2024
+          path: project
+
+      - name: Set execute permission for project.py
+        run: |
+          chmod +x project/project.py
+
+      - name: Run Project Code
+        run: |
+          cd project
+          ./project.py
+
+      - name: Run Test Code
+        run: |
+          cd project
+          ./tests.sh
