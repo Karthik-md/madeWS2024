@@ -12,6 +12,7 @@ def download_csv(url, folder_name, filename):
     if not os.path.exists(folder_name):
         os.makedirs(folder_name)
     
+    
     # Full path to save the file
     file_path = os.path.join(folder_name, filename)
     
