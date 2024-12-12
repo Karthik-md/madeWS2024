@@ -38,8 +38,10 @@ jobs:
 
       - name: Run Test Code
         run: |
-          cd project 
+          cd project
+          ls -la
+          ./test.sh
 
       - name: List files in working project directory
         run: |
-          ls -la 
+          ls -la
