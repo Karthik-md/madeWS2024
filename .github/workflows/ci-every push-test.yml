@@ -38,6 +38,5 @@ jobs:
 
       - name: Run Test Code
         run: |
-          ls -la
           ./test.sh
         working-directory: project
