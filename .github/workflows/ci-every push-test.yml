@@ -39,4 +39,4 @@ jobs:
       - name: Run Test Code
         run: |
           cd project
-          ./tests.sh
+          ./test.sh
