@@ -16,7 +16,7 @@ class TestProject(unittest.TestCase):
 
         # Read from app.config
         config = configparser.ConfigParser()
-        config.read('project/app.config')
+        config.read('./project/app.config')
         folder_name = 'test_data'
         url = config['urls']['url1']
         filename = 'test.csv'
@@ -60,7 +60,7 @@ class TestProject(unittest.TestCase):
 
         # Call the functions
         config = configparser.ConfigParser()
-        config.read('project/app.config')
+        config.read('./project/app.config')
         folder_name = 'test_data'
         filename = 'test.csv'
         url = config['urls']['url1']
