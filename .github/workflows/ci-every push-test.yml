@@ -32,9 +32,9 @@ jobs:
           repository: Karthik-md/madeWS2024
           path: project
 
-      - name: List files in project directory
+      - name: List files in working directory
         run: |
-          ls -la project
+          ls -la 
 
       - name: Run Test Code
         run: |
