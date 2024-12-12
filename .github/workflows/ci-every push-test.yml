@@ -36,6 +36,14 @@ jobs:
         run: |
           ls -la project
 
+      - name: Find and Set Permissions for Requirements Files
+        run: |
+          find . -name "requirements.txt" -exec chmod +r {} \;
+
+      - name: Install Dependencies from All Requirements Files
+        run: |
+          find . -name "requirements.txt" -exec pip install -r {} \;
+
       - name: Set execute permissions for test.sh scripts
         run: |
           find . -name "test.sh" -exec chmod +x {} \;
