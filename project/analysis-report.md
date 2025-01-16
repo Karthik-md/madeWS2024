@@ -3,7 +3,7 @@
 </div>
 
 ## Introduction
-For decades, the economic interdependence between China and the U.S. has been profound. Recent tensions from 2018 to 2022 due raise in tariff for chinese imports by Trump raise the question: Are their economies drifting apart? The answer is mixed. U.S. imports of certain Chinese goods, like semiconductors and IT hardware, have dropped, while imports of laptops, phones, and toys have surged, especially during the COVID-19 pandemic. Trade policies and a push to diversify supply chains contribute to this partial disentanglement. However, these actions come with repercussions, including supply chain disruptions and increased costs. Let's interpret these actions further.
+For decades, the economic interdependence between China and the U.S. has been profound. Recent tensions from 2018 to 2022 due raise in tariff for chinese imports by US president Donald Trump government raise the question: Are their economies drifting apart? The answer is mixed. U.S. imports of certain Chinese goods, like semiconductors and IT hardware, have dropped, while imports of laptops, phones, and toys have surged, especially during the COVID-19 pandemic. Trade policies and a push to diversify supply chains contribute to this partial disentanglement. However, these actions come with repercussions, including supply chain disruptions and increased costs. Let's interpret these actions further.
 
 ## Used Data:
 ### Pipeline A:
